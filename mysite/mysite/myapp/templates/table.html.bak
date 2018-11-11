@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>我的书单</title>
+</head>
+<body>
+<p>show1111</p>
+{% for number in Goods %}
+<p> {{number.id}} : {{number.title}} :{{number.price}} :{{number.detail}}
+</p>
+<br />
+{% endfor %}
+</body>
+</html>

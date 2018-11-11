@@ -1,0 +1,1 @@
+CreateObject("WScript.Shell").Run"cmd /c D:\eclipse1\django_item1\src\mysite\mysite\run.bat",0

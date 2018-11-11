@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Book Lists</title>
+</head>
+<body>
+	<p style="text-align:center;color:blue;font-size:20px;">我的书单</p>
+		
+		<table border='2'>
+		    <thead>
+				<tr>
+					<th>ID</th>
+					<th>书名</th>
+					<th>开始时间</th>
+					<th>书本信息</th>
+					<th>书本类型</th>
+					<th>书本看完时间</th>
+					<th>书本备注信息</th>
+					<th>更新</th>
+					<th>删除</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!--
+				{% if not Goods %}
+						<form action="/book/" method="POST">{% csrf_token %}
+						<td><input type="number" value= "" name = "id"/> </td>
+						<td><input value= "" name = "bookname" /> </td>
+						<td><input value= "" name = "bookstarttime" /> </td>
+						<td><input value= "" name = "bookinfo" /> </td>
+						<td><input value= "" name = "booktype" /> </td>
+						<td><input value= "" name = "bookendtime" /> </td>
+						<td><input value= "" name = "bookremark" /> </td>
+						<td> <input type="submit" value="update" /></td>
+						</form> 
+						<td> <form action="/book/" method="POST">{% csrf_token %}
+							<input type="submit" name = {{number.id}} value= "delete"/> 
+							</form> 
+						</td>						
+				{% endif %}
+				-->
+				{% for number in Goods %}
+					<tr>
+						<form action="/book/" method="POST">{% csrf_token %}
+						<td ><input value= "{{number.id}}" name ="id_add" size="3"/> </td>
+						<td ><input value= "{{number.bookname|linebreaksbr}}" name="bookname" size="40" /></td>
+						<td><input value= "{{number.bookstarttime|linebreaksbr}}" name="bookstarttime" size="10" /> </td>
+						<td><input value= "{{number.bookinfo}}" name = "bookinfo"/> </td>
+						<td><input value= "{{number.booktype}}" name = "booktype"/> </td>
+						<td><input value= "{{number.bookendtime}}" name = "bookendtime" size="10"/> </td>
+						<td><input value= "{{number.bookremark}}" name = "bookremark"/> </td>
+						<td> <input type="submit" value="修改" /></td>
+						
+						</form> 
+						<td> <form action="/book/" method="POST">{% csrf_token %}
+							<input type="submit" name = {{number.id}} value= "删除"/> 
+							</form> 
+						</td>
+					</tr>
+					
+					{% if forloop.last %} 
+						<form action="/book/" method="POST">{% csrf_token %}
+						<td ><input value="{{number.id|add:1}}" name="id" size="3"/></td>
+						<td ><input value="" name="bookname" size="40"/> </td>
+						<td><input value= "" name = "bookstarttime" size="10"/> </td>
+						<td><input value= "" name = "bookinfo" /> </td>
+						<td><input value= "" name = "booktype" /> </td>
+						<td><input value= "" name = "bookendtime" size="10"/> </td>
+						<td><input value= "" name = "bookremark" /> </td>
+						<td> <input type="submit" value="添加" /></td>
+						</form> 				
+					{% endif %}
+
+				{% endfor %}
+				
+			</tbody>	
+		</table>
+</body>
+</html>
